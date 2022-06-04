@@ -29,40 +29,37 @@ function Text() {
     if (response) {
       console.log(engCode);
     }
-
-    //console.log('worked!')
   }
-  /*
+  const test = () => {
+    console.log("working?:", frenCode);
+  }
+
   return (
-    <div>
-      <form onSubmit={runCode}>
-        <label>
-          Testing input
-        </label>
-        <input
-          value={code}
-          placeholder="Enter some code"
-          onChange={(e) => setCode(e.target.value)}
-        />
-        <button type="submit">Run</button>
-      </form>
-    </div>
-  )*/
-  return (
-    <CodeMirror
-      value="console.log('hello world!');"
-      height="200px"
-      extensions={[javascript({ jsx: true })]}
-      onChange={(e) => setFrenCode(e.target.value)}
-    />
+    <>
+      <CodeMirror
+        value={frenCode}
+        height="200px"
+        extensions={[javascript({ jsx: true })]}
+        onChange={(value, viewUpdate) => {
+          console.log("value:", value);
+          setFrenCode(value);
+          console.log("frenCode:", frenCode);
+        }}
+      />
+      <button onClick={test}>
+        Hi
+      </button>
+    </>
   );
 }
 
 export default function Body() {
+    const [frenCode, setFrenCode] = useState("console.log('hello world!');");
+    const [engCode, setEngCode] = useState('');
     return (
         <Grid container spacing={0}> 
             <Grid item xs={8} sx={{bgcolor: 'blue'}}>
-                <Text></Text>
+              <Text></Text>
             </Grid>
             <Grid item xs={4} sx={{bgcolor: 'red'}}>
                 <Text></Text>
