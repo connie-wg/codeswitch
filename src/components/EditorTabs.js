@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -10,7 +11,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
-function Text( props ) {
+function Text(props) {
+
   return (
     <CodeMirror 
       theme='dark'
@@ -18,9 +20,9 @@ function Text( props ) {
       height="600px"
       extensions={[javascript({ jsx: true })]}
       onChange={(value, viewUpdate) => {
-        console.log('value:', value);
+        props.setCode(value);
       }}
-    />
+    />  
   );
 }
 
@@ -60,10 +62,35 @@ function a11yProps(index) {
 export default function EditorTabs() {
   const [value, setValue] = React.useState(0);
 
+  const [frenCode, setFrenCode] = useState("console.log('hello world!');");
+  const [engCode, setEngCode] = useState('');
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const runCode = async(e) => {
+    e.preventDefault();
+    const codeInfo = { frenCode };
+    console.log(codeInfo);
+
+    await fetch("/translate_code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(codeInfo)
+    }).then(
+      res => res.json()
+    ).then(
+      data => {
+        setEngCode(data)
+        console.log("response:", data);
+      }
+    );
+  }
+  
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -75,16 +102,16 @@ export default function EditorTabs() {
             </Tabs>
           </Grid>
           <Grid item>
-            <IconButton><PlayArrowOutlinedIcon></PlayArrowOutlinedIcon></IconButton>
+            <IconButton onClick={runCode}><PlayArrowOutlinedIcon></PlayArrowOutlinedIcon></IconButton>
             <IconButton><FileDownloadOutlinedIcon></FileDownloadOutlinedIcon></IconButton>
           </Grid>
         </Grid>
       </Box>
       <TabPanel value={value} index={0}>
-        <Text code="console.log('hi');"></Text>
+        <Text code={frenCode} setCode={setFrenCode}></Text>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Text code="console.log('bye');"></Text>
+        <Text code={frenCode} setCode={setFrenCode}></Text>
       </TabPanel>
     </Box>
   );
