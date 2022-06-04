@@ -22,3 +22,76 @@ big_str = "01/*456/**/"
 end = big_str.index("*/", 0)
 print(end)
 
+def string_trans(strinp):
+    arr_str = strinp.split('\t\n')
+    str_out = ""
+    for str in arr_str:
+        a = "\"" + str + "\": [],\n"
+        str_out += a
+    return str_out
+
+print(string_trans("""
+abstract
+arguments	
+boolean	
+break
+byte	
+case	
+catch	
+char
+const	
+continue	
+debugger	
+default
+delete	
+do	
+double
+else
+eval	
+false	
+final	
+finally
+float	
+for	
+function	
+goto
+if	
+implements	
+in	
+instanceof
+int	
+interface	
+let	
+long
+native	
+new	
+null	
+package
+private	
+protected	
+public	
+return
+short	
+static	
+switch	
+synchronized
+this	
+throw	
+throws	
+transient
+true	
+try	
+typeof	
+var
+void	
+volatile	
+while	
+with
+yield
+class	
+enum	
+export	
+extends
+import	
+super
+"""))
