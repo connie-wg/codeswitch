@@ -4,20 +4,9 @@ import { javascript } from '@codemirror/lang-javascript';
 import React, { useState, useEffect } from 'react'
 
 function Text() {
-  const [data, setData] = useState([{}]);
   const [code, setCode] = useState('');
   const [engCode, setEngCode] = useState('');
 
-  useEffect(() => {
-    fetch("/members").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
 
   return (
     <CodeMirror
