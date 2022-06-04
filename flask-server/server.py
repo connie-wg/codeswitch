@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from importlib import import_module
-import text_splitting
 from text_splitting import split_str
 
 app = Flask(__name__)

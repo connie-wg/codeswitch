@@ -1,5 +1,3 @@
-from numpy import true_divide
-import text_processing
 from text_processing import replacing_keywords
 
 symbols_list = {
