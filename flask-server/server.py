@@ -2,7 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/send_code", methods=['POST'])
+@app.route("/translate_code", methods=['POST'])
 def code():
   return {"status": "200"}
   
