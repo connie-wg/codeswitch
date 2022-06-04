@@ -22,7 +22,7 @@ function Text() {
 export default function Body() {
     return (
         <Grid container spacing={0}> 
-            <Grid item xs={8}>
+            <Grid item xs={8} >
                 <EditorTabs></EditorTabs>
             </Grid>
             <Grid item xs={4}>
