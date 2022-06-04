@@ -13,7 +13,6 @@ function ShellText( props ) {
     <CodeMirror
       value={props.code}
       theme='dark'
-      value={props.code}
       height="600px"
       extensions={[javascript({ jsx: true })]}
       onChange={(value, viewUpdate) => {
