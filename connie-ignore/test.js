@@ -6,3 +6,7 @@ console.log("its working")
 
 /* aksjdhaksjd /* ak/shdkajsdh */
 "asdasd /**/ asdasd"
+
+function transform(str_inp) {
+    
+}
