@@ -72,6 +72,7 @@ export default function EditorTabs() {
   const runCode = async(e) => {
     e.preventDefault();
     const codeInfo = { frenCode };
+
     console.log(codeInfo);
 
     await fetch("/translate_code", {
