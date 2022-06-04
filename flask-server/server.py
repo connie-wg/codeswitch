@@ -1,4 +1,8 @@
+from importlib import import_module
 from flask import Flask
+import text_splitting
+from text_splitting import split_str
+
 
 app = Flask(__name__)
 

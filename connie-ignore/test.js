@@ -1,5 +1,8 @@
-for (let i = 0; i < 100; i++) {
-    1 + 1
+function printing(str) {
+    console.log(str)
 }
 
+console.log("its working")
 
+/* aksjdhaksjd /* ak/shdkajsdh */
+"asdasd /**/ asdasd"
