@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -25,7 +26,7 @@ function FrenchText( props ) {
       height="600px"
       extensions={[javascript({ jsx: true })]}
       onChange={(value, viewUpdate) => {
-        console.log('value:', value);
+        props.setCode(value);
       }}
     />
   );
@@ -39,9 +40,9 @@ function EnglishText( props ) {
       height="600px"
       extensions={[javascript({ jsx: true })]}
       onChange={(value, viewUpdate) => {
-        console.log('value:', value);
+        props.setCode(value);
       }}
-    />
+    />  
   );
 }
 
@@ -113,10 +114,36 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function EditorTabs() {
   const [value, setValue] = React.useState(0);
 
+  const [frenCode, setFrenCode] = useState("console.log('hello world!');");
+  const [engCode, setEngCode] = useState('');
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const runCode = async(e) => {
+    e.preventDefault();
+    const codeInfo = { frenCode };
+
+    console.log(codeInfo);
+
+    await fetch("/translate_code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(codeInfo)
+    }).then(
+      res => res.json()
+    ).then(
+      data => {
+        setEngCode(data)
+        console.log("response:", data);
+      }
+    );
+  }
+  
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -127,17 +154,18 @@ export default function EditorTabs() {
               <StyledTab label="English.js" {...a11yProps(1)} />
             </StyledTabs>
           </Grid>
+
           <Grid item container justifyContent="flex-end" xs={6}>
-            <IconButton><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
+            <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
             <IconButton><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
           </Grid>
         </Grid>
       </Box>
       <TabPanel value={value} index={0}>
-        <FrenchText code="console.log('hi');"></FrenchText>
+        <FrenchText code={frenCode} setCode={setFrenCode}></FrenchText>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EnglishText code="console.log('bye');"></EnglishText>
+        <EnglishText code={frenCode} setCode={setFrenCode}></EnglishText>
       </TabPanel>
     </Box>
   );
