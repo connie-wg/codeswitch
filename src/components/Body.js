@@ -9,12 +9,13 @@ function Text() {
 
   const runCode = async(e) => {
     e.preventDefault();
-    const codeInfo = {frenCode};
+    const codeInfo = { frenCode };
+    console.log(codeInfo);
 
     const response = await fetch("/translate_code", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(codeInfo)
     }).then(
@@ -22,16 +23,9 @@ function Text() {
     ).then(
       data => {
         setEngCode(data)
-        console.log(data.status)
+        console.log("response:", data);
       }
     );
-
-    if (response) {
-      console.log(engCode);
-    }
-  }
-  const test = () => {
-    console.log("working?:", frenCode);
   }
 
   return (
@@ -41,12 +35,10 @@ function Text() {
         height="200px"
         extensions={[javascript({ jsx: true })]}
         onChange={(value, viewUpdate) => {
-          console.log("value:", value);
           setFrenCode(value);
-          console.log("frenCode:", frenCode);
         }}
       />
-      <button onClick={test}>
+      <button onClick={runCode}>
         Hi
       </button>
     </>
