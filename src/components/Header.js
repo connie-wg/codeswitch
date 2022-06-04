@@ -1,7 +1,8 @@
 export default function Header() {
   return (
-
-    <h1>CodeSwitch</h1>
+    <div>
+      <h1 style={{color: '#E1D3FF'}}>CodeSwitch</h1>
+    </div>
   
   );
 }
