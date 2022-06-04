@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import React, { useState, useEffect } from 'react'
+<<<<<<< HEAD
 
 function Text() {
   const [frenCode, setFrenCode] = useState("console.log('hello world!');");
@@ -53,15 +54,22 @@ function Text() {
     </>
   );
 }
+=======
+import '../styles/material-palenight.css';
+import EditorTabs from './EditorTabs';
+import ShellTab from './ShellTab';
+>>>>>>> 02acff15118b7bb3aa63fd5dd2bc3c162fca3155
 
 export default function Body() {
+    const [frenCode, setFrenCode] = useState("console.log('hello world!');");
+    const [engCode, setEngCode] = useState('');
     return (
         <Grid container spacing={0}> 
-            <Grid item xs={8} sx={{bgcolor: 'blue'}}>
-                <Text></Text>
+            <Grid item xs={8}>
+                <EditorTabs></EditorTabs>
             </Grid>
-            <Grid item xs={4} sx={{bgcolor: 'red'}}>
-                <Text></Text>
+            <Grid item xs={4}>
+                <ShellTab></ShellTab>
             </Grid>          
         </Grid>
     );
