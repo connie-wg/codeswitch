@@ -45,6 +45,6 @@ def split_str(inp_str):
         else:
             pending_str += curr_char
             i += 1
-
-    proc_str += replacing_keywords(pending_str)       
-    return proc_str
+    
+    proc_str += replacing_keywords(pending_str)
+    return proc_str[:-2]
