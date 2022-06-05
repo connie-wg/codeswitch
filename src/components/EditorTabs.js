@@ -149,9 +149,10 @@ export default function EditorTabs( props ) {
       props.setOut((prev) => prev ? (prev + '\n' + e) : e);
     } 
 
+    props.setOut('');
     
-
     try {
+      
       const f = new Function(code);
       f();
     } catch (e){
