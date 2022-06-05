@@ -7,12 +7,12 @@ import Container from '@mui/material/TableContainer';
 function App() {
 
   return (
-    <>
+    <div className='main-container'>
       <Container>
         <Header></Header>
         <Body></Body>   
       </Container>
-    </>
+    </div>
   )
 }
 

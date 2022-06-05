@@ -157,6 +157,9 @@ export default function EditorTabs( props ) {
     }
 
   }
+
+  const handleDownload = () => {
+  }
   
   
   return (
@@ -172,7 +175,7 @@ export default function EditorTabs( props ) {
 
           <Grid item container justifyContent="flex-end" xs={6}>
             <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
-            <IconButton onClick={() => {tempRun(engCode)}}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
+            <IconButton onClick={handleDownload}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
           </Grid>
         </Grid>
       </Box>

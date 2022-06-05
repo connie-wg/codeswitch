@@ -51,7 +51,7 @@ keyword_dict = {
     "static": ['statique'],
     "switch": ['change'],
     "synchronized": [],
-    "this": ['soi'],
+    "this": ['celui'],
     "throw": ['lance'],
     "throws": [],
     "transient": [],
