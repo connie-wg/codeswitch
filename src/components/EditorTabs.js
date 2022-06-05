@@ -119,7 +119,7 @@ export default function EditorTabs( props ) {
     e.preventDefault();
     const codeInfo = { frenCode };
 
-    console.log(codeInfo);
+    // console.log(codeInfo);
 
     await fetch("/translate_code", {
       method: "POST",
@@ -132,7 +132,7 @@ export default function EditorTabs( props ) {
     ).then(
       data => {
         setEngCode(data)
-        console.log("response:", data);
+        // console.log("response:", data);
         tempRun(data);
       }
     );
