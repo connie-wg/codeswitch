@@ -23,11 +23,43 @@ end = big_str.index("*/", 0)
 print(end)
 
 def string_trans(strinp):
-    arr_str = strinp.split('\t\n')
+    arr_str = strinp.split('\n')
     str_out = ""
     for str in arr_str:
         a = "\"" + str + "\": [],\n"
         str_out += a
     return str_out
 
-print(string_trans())
+print(string_trans(
+"""
+valueOf
+charAt
+charCodeAt
+concat
+indexOf
+lastIndexOf
+length
+replace
+search
+slice
+split
+substr
+substring
+toUpperCase
+every
+filter
+forEach
+join
+map
+pop
+push
+reduce
+reduceRight
+reverse
+shift
+unshift
+sort
+match
+some
+"""
+))
