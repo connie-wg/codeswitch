@@ -10,7 +10,6 @@ Les mot-clés et fonctions intégrées suivants sont compatibles.
 Les fonctions comprendent un IDE en ligne, l'abilité de traduire votre code en Anglais, et un façon de télécharger vos fichiers après vous avez finis!
 
 <br>
-<br>
 
 ## JavaScript Keywords
       
