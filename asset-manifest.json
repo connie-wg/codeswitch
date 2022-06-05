@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/codeswitch/static/css/main.156dc04d.css",
+    "main.js": "/codeswitch/static/js/main.1eb06de3.js",
+    "static/js/787.71de329f.chunk.js": "/codeswitch/static/js/787.71de329f.chunk.js",
+    "index.html": "/codeswitch/index.html",
+    "main.156dc04d.css.map": "/codeswitch/static/css/main.156dc04d.css.map",
+    "main.1eb06de3.js.map": "/codeswitch/static/js/main.1eb06de3.js.map",
+    "787.71de329f.chunk.js.map": "/codeswitch/static/js/787.71de329f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.156dc04d.css",
+    "static/js/main.1eb06de3.js"
+  ]
+}
