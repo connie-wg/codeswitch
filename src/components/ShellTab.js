@@ -7,6 +7,13 @@ import Box from '@mui/material/Box';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { styled } from '@mui/material/styles';
+import {tags} from "@lezer/highlight"
+import {HighlightStyle} from "@codemirror/language"
+
+const myHighlightStyle = HighlightStyle.define([
+  {tag: tags.keyword, color: "#fc6"},
+  {tag: tags.comment, color: "#f5d", fontStyle: "italic"}
+])
 
 function ShellText( props ) {
   return (

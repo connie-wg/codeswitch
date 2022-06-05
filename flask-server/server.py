@@ -6,12 +6,12 @@ app = Flask(__name__)
 
 @app.route("/translate_code", methods=['POST'])
 def code():
-  body = request.json['frenCode']
-  return {
-    "body": body
-  }
+  frenCode = request.json['frenCode']
+  engCode = split_str(frenCode)
 
+  return jsonify(engCode)
 
+print(split_str("aksjdhalksjdhasd si oui non pour"))
   
 if __name__ == "__main__":
   app.run(debug=True) # since this is in development mode

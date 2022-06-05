@@ -7,7 +7,8 @@ symbols_list = {
     "\'": "\'"
 }
 
-def split_str(big_str):
+def split_str(inp_str):
+    big_str = inp_str + '\n '
     length = len(big_str)
     i = 0
     proc_str = ""
@@ -44,4 +45,8 @@ def split_str(big_str):
         else:
             pending_str += curr_char
             i += 1
-    return proc_str
+    
+    proc_str += replacing_keywords(pending_str)
+    return proc_str[:-2]
+
+print(split_str("pour use if si sinon /**/"))
