@@ -145,7 +145,9 @@ export default function EditorTabs( props ) {
     const oldError = console.error;
     console.error = function(e){
       props.setOut((prev) => prev ? (prev + '\n' + e) : e);
-    }
+    } 
+
+    
 
     try {
       const f = new Function(code);
@@ -199,7 +201,7 @@ export default function EditorTabs( props ) {
 
           <Grid item container justifyContent="flex-end" xs={6}>
             <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
-            <IconButton onClick={handleDownload}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
+            <IconButton onClick={handleDownload}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4', marginRight: '10px'}}></FileDownloadOutlinedIcon></IconButton>
           </Grid>
         </Grid>
       </Box>
