@@ -50,3 +50,20 @@ body {
   margin-top: 5vh;
   height: 90vh;
 }
+
+.form-select {
+  
+}
+.form-select:focus {
+  
+}
+
+.select-button {
+  background-color: "#E1D3FF";
+}
+/* .select-button:hover {
+  background-color: aqua;
+} */
+.select-button:focus {
+  outline: none
+}
