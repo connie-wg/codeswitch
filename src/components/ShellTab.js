@@ -4,20 +4,23 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CodeMirror from '@uiw/react-codemirror';
+import CodeMirror, { lineNumbers } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { styled } from '@mui/material/styles';
+import { yeetle } from '../styles/code-theme.ts';
 
-function ShellText( props ) {
+function ShellText( {consoleOut} ) {
   return (
     <CodeMirror
-      theme='dark'
-      value={props.code}
+      value={consoleOut}
+      theme={yeetle}
       height="600px"
-      extensions={[javascript({ jsx: true })]}
+      extensions={[javascript({ jsx: true }), lineNumbers({formatNumber: n => ">"})]}
       onChange={(value, viewUpdate) => {
-        console.log('value:', value);
+        // console.log('value:', value);
       }}
+      readOnly={true}
+      id="hello"
     />
   );
 }
@@ -87,7 +90,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
-export default function ShellTab() {
+export default function ShellTab( {consoleOut} ) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -102,7 +105,7 @@ export default function ShellTab() {
         </StyledTabs>
       </Box> 
       <TabPanel value={value} index={0}>
-        <ShellText code="peepee poopoo check"></ShellText>
+        <ShellText consoleOut={consoleOut}></ShellText>
       </TabPanel>
     </Box>
   );

@@ -9,13 +9,15 @@ import ShellTab from './ShellTab';
 export default function Body() {
     const [frenCode, setFrenCode] = useState("console.log('hello world!');");
     const [engCode, setEngCode] = useState('');
+    const [consoleOut, setConsoleOut] = useState('');
+
     return (
         <Grid container spacing={0}> 
             <Grid item xs={8} >
-                <EditorTabs></EditorTabs>
+                <EditorTabs setOut={setConsoleOut}></EditorTabs>
             </Grid>
             <Grid item xs={4}>
-                <ShellTab></ShellTab>
+                <ShellTab consoleOut={consoleOut}></ShellTab>
             </Grid>          
         </Grid>
     );

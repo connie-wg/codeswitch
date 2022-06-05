@@ -11,17 +11,13 @@ import { javascript } from '@codemirror/lang-javascript';
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import { styled } from '@mui/material/styles';
-import '../styles/material-palenight.css';
-import {EditorView} from "@codemirror/view"
-
-// let myTheme = EditorView.theme({
-  
-// }, {dark: true});
+import { yeetle } from '../styles/code-theme.ts';
+import {EditorView} from "@codemirror/view";
 
 function FrenchText( props ) {
   return (
     <CodeMirror 
-      theme='dark'
+      theme={yeetle}
       value={props.code}
       height="600px"
       extensions={[javascript({ jsx: true })]}
@@ -35,7 +31,7 @@ function FrenchText( props ) {
 function EnglishText( props ) {
   return (
     <CodeMirror 
-      theme='dark'
+      theme={yeetle}
       value={props.code}
       height="600px"
       extensions={[javascript({ jsx: true })]}
@@ -111,7 +107,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
-export default function EditorTabs() {
+export default function EditorTabs( props ) {
   const [value, setValue] = React.useState(0);
 
   const [frenCode, setFrenCode] = useState("console.log('hello world!');");
@@ -139,8 +135,29 @@ export default function EditorTabs() {
       data => {
         setEngCode(data)
         console.log("response:", data);
+        tempRun(data);
       }
     );
+  }
+
+  const tempRun = (code) => {
+    const oldLog = console.log;
+    console.log = function(message){
+      props.setOut((prev) => prev ? (prev + '\n' + message) : message);
+    }
+
+    const oldError = console.error;
+    console.error = function(e){
+      props.setOut((prev) => prev ? (prev + '\n' + e) : e);
+    }
+
+    try {
+      const f = new Function(code);
+      f();
+    } catch (e){
+      console.error(e);
+    }
+
   }
   
   
@@ -157,7 +174,7 @@ export default function EditorTabs() {
 
           <Grid item container justifyContent="flex-end" xs={6}>
             <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
-            <IconButton><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
+            <IconButton onClick={() => {tempRun(engCode)}}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4'}}></FileDownloadOutlinedIcon></IconButton>
           </Grid>
         </Grid>
       </Box>
@@ -165,7 +182,7 @@ export default function EditorTabs() {
         <FrenchText code={frenCode} setCode={setFrenCode}></FrenchText>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <EnglishText code={frenCode} setCode={setFrenCode}></EnglishText>
+        <EnglishText code={engCode} setCode={setEngCode}></EnglishText>
       </TabPanel>
     </Box>
   );
