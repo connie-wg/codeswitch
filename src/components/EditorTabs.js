@@ -189,12 +189,6 @@ export default function EditorTabs( props ) {
     a.click(); 
   }
   
-  const changeColor = () => {
-    if (currentTab == 'french') return '#2D2445';
-    if (currentTab == 'english') return '#D0C7E4';
-  } 
-
-  
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -208,10 +202,12 @@ export default function EditorTabs( props ) {
 
           <Grid item container justifyContent="flex-end" xs={6}>
             <Tooltip title="Run code">
-              <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
+              <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4', transition: '0.2s', '&:hover': {color: '#AA84FF'}}}></PlayArrowOutlinedIcon></IconButton>
             </Tooltip>
             <Tooltip title={currentTab == 'french' ? 'Click on the english tab to download your code' : 'Download translated JS file'}>
-              <IconButton onClick={currentTab == 'english' ? handleDownload : null}><FileDownloadOutlinedIcon sx={{color: `${changeColor()}`, marginRight: '10px'}}></FileDownloadOutlinedIcon></IconButton>
+              <IconButton onClick={currentTab == 'english' ? handleDownload : null}>
+                <FileDownloadOutlinedIcon sx={currentTab == 'french' ? {color: '#2D2445', marginRight: '10px', transition: '0.2s'} : {marginRight: '10px', transition: '0.2s', color: '#D0C7E4', '&:hover': {color:'#AA84FF'}}}></FileDownloadOutlinedIcon>
+              </IconButton>
             </Tooltip>
           </Grid>
         </Grid>
