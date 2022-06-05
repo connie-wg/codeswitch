@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
+import { styled } from '@mui/material/styles';
 
-function Text( props ) {
+function ShellText( props ) {
   return (
     <CodeMirror
       theme='dark'
@@ -33,7 +34,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 0 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -54,6 +55,38 @@ function a11yProps(index) {
   };
 }
 
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  />
+))({
+  '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    backgroundColor: '#2E1F4E',
+    fontFamily: 'Courier New',
+    color: '#D0C7E4',
+    '&.Mui-selected': {
+      backgroundColor: '#342458',
+      color: '#D0C7E4',
+    },
+    width: '170px',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
+  }),
+);
+
 export default function ShellTab() {
   const [value, setValue] = React.useState(0);
 
@@ -64,12 +97,12 @@ export default function ShellTab() {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Console" {...a11yProps(0)} />
-        </Tabs>
+        <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <StyledTab label="Console" {...a11yProps(0)} />
+        </StyledTabs>
       </Box> 
       <TabPanel value={value} index={0}>
-        <Text code="console.log('i am console.')"></Text>
+        <ShellText code="peepee poopoo check"></ShellText>
       </TabPanel>
     </Box>
   );

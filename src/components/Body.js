@@ -11,7 +11,7 @@ export default function Body() {
     const [engCode, setEngCode] = useState('');
     return (
         <Grid container spacing={0}> 
-            <Grid item xs={8}>
+            <Grid item xs={8} >
                 <EditorTabs></EditorTabs>
             </Grid>
             <Grid item xs={4}>
