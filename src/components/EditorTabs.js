@@ -119,7 +119,7 @@ export default function EditorTabs( {setOut, currLang} ) {
     if(currLang == 'French'){
       setForeignCode("console.enr('bonjour monde!');");
     } else {
-      setForeignCode("console.anota('hola mundo!);");
+      setForeignCode("consola.anota('hola mundo!');");
     }
   }, [currLang])
 

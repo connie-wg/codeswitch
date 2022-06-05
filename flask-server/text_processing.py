@@ -110,5 +110,7 @@ built_in_dict = {
 def replacing_keywords(js_str):
     keyword_processor.add_keywords_from_dict(keyword_dict)
     # replacing keywords
+    keyword_processor.add_keywords_from_dict(built_in_dict)
+
     new_str = keyword_processor.replace_keywords(js_str)
     return new_str
