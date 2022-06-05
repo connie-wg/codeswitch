@@ -73,7 +73,35 @@ keyword_dict = {
  }
  
 built_in_dict = {
-
+    "charAt": ["charIndex"],
+    "charCodeAt": ["charCodeIndex"],
+    "concat": ["enchaîne", "enchaine"],
+    "every": ["chaque"],
+    "filter": ["filtre"],
+    "forEach": ["pourChacun"],
+    "indexOf": ["indexDe"],
+    "join": ["joint"],
+    "lastIndexOf": ["dernierIndexDe"],
+    "length": ["longeur"],
+    "map": ["caractérise", "caracterise"],
+    "match": ["compare"],
+    "pop": ["enlève", "enleve"],
+    "push": ["ajoute"],
+    "reduce": ["réduit", "reduit"],
+    "reduceRight": ["réduitDroit", "reduitDroit"],
+    "replace": ["remplace"],
+    "reverse": ["renverse"],
+    "search": ["cherche"],
+    "shift": ["déplace", "deplace"],
+    "slice": ["coupe"],
+    "some": ["quelques"],
+    "sort": ["trie"],
+    "split": ["sépare", "separe"],
+    "substr": [],
+    "substring": [],
+    "toLowerCase": ["enMiniscule"],
+    "toUpperCase": ["enMajuscule"],
+    "valueOf": ["valeurDe"],
 }
  
 
