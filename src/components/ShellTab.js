@@ -22,6 +22,7 @@ function ShellText( {consoleOut} ) {
       readOnly={true}
       editable={false}
       id="hello"
+      
     />
   );
 }

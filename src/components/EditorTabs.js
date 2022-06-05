@@ -124,7 +124,7 @@ export default function EditorTabs( {setOut, currLang} ) {
   }, [currLang])
 
   const handleChange = (event, newValue) => {
-    console.log(newValue)
+    // console.log(newValue)
     setValue(newValue);
   };
 

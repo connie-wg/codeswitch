@@ -16,6 +16,8 @@ import { Box } from "@mui/system";
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from "@mui/private-theming";
 
+
+
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currLang, setCurrLang] = useState("French");
@@ -69,22 +71,39 @@ function App() {
           >
             Settings
           </Typography>
-          <FormControl sx={{ width: "80%", color: "#E1D3FF" }}>
+          <FormControl 
+            sx={{ 
+              width: "80%", 
+              color: "#E1D3FF",
+              ".MuiSelect-outline": {
+                border: 'none'
+              }
+            }}>
               Change Language
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={currLang}
-              label="Age"
               onChange={handleLangClick}
               sx={{ 
                 color: "#E1D3FF", 
-                border: "solid #E1D3FF 1px" 
+                border: "solid #E1D3FF 1px",
+                '& .MuiSelect-icon': {
+                  color: "white"
+                },
+                '&.Mui-focused': {
+                  outline: 'none',
+                },
+                '.MuiOutlinedInput-notchedOutline':{
+                  border: "none"
+                },
+                fontFamily: 'Courier New',
+                marginTop: '5px'
               }} 
               className="form-select"
             >
-              <MenuItem value={"French"}>French</MenuItem>
-              <MenuItem value={"Spanish"}>Spanish</MenuItem>
+              <MenuItem value={"French"} sx={{fontFamily: 'Courier New',}}>French</MenuItem>
+              <MenuItem value={"Spanish"} sx={{fontFamily: 'Courier New',}}>Spanish</MenuItem>
             </Select>
           </FormControl>
           <Grid container flex alignItems="center" justifyContent="center" paddingTop="2rem">
