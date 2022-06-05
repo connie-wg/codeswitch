@@ -1,5 +1,5 @@
 function printing(str) {
-    console.log(str)
+    // console.log(str)
 }
 
 console.log("its working")
