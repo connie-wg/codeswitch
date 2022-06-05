@@ -10,7 +10,6 @@ import { javascript } from '@codemirror/lang-javascript';
 function Text( props ) {
   return (
     <CodeMirror
-      value={props.code}
       theme='dark'
       value={props.code}
       height="600px"
