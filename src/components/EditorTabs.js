@@ -112,14 +112,14 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 export default function EditorTabs( {setOut, currLang} ) {
   const [value, setValue] = React.useState(0);
   const [currentTab, setCurrentTab] = useState('french');
-  const [foreignCode, setForeignCode] = useState("console.log('bonjour monde!');");
+  const [foreignCode, setForeignCode] = useState("console.enr('bonjour monde!');");
   const [engCode, setEngCode] = useState("console.log('hello world!');");
 
   useEffect(() => {
     if(currLang == 'French'){
-      setForeignCode("console.log('bonjour monde!');");
+      setForeignCode("console.enr('bonjour monde!');");
     } else {
-      setForeignCode("console.log('hola mundo!);");
+      setForeignCode("console.anota('hola mundo!);");
     }
   }, [currLang])
 

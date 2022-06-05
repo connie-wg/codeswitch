@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route("/translate_code", methods=['POST'])
 def code():
-  frenCode = request.json['frenCode']
-  engCode = split_str(frenCode)
+  foreignCode = request.json['foreignCode']
+  engCode = split_str(foreignCode)
   return jsonify(engCode)
 
 @app.route("/download", methods=['POST'])

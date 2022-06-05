@@ -16,6 +16,8 @@ import { Box } from "@mui/system";
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from "@mui/private-theming";
 
+
+
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [currLang, setCurrLang] = useState("French");
