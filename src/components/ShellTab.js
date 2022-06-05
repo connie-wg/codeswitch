@@ -11,7 +11,6 @@ import { styled } from '@mui/material/styles';
 function ShellText( props ) {
   return (
     <CodeMirror
-      value={props.code}
       theme='dark'
       value={props.code}
       height="600px"

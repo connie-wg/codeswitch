@@ -23,7 +23,7 @@ end = big_str.index("*/", 0)
 print(end)
 
 def string_trans(strinp):
-    arr_str = strinp.split('\t\n')
+    arr_str = strinp.split('\n')
     str_out = ""
     for str in arr_str:
         a = "\"" + str + "\": [],\n"
