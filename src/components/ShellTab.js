@@ -20,6 +20,7 @@ function ShellText( {consoleOut} ) {
         // console.log('value:', value);
       }}
       readOnly={true}
+      editable={false}
       id="hello"
     />
   );
