@@ -102,6 +102,7 @@ built_in_dict = {
     "toLowerCase": ["enMiniscule"],
     "toUpperCase": ["enMajuscule"],
     "valueOf": ["valeurDe"],
+    "console.log": []
 }
  
 

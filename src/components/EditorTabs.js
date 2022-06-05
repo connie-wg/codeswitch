@@ -16,7 +16,7 @@ import {EditorView} from "@codemirror/view";
 import Tooltip from '@mui/material/Tooltip';
 import { blue } from '@mui/material/colors';
 
-function FrenchText( props ) {
+function ForeignText( props ) {
   return (
     <CodeMirror 
       theme={yeetle}
@@ -29,6 +29,8 @@ function FrenchText( props ) {
     />
   );
 }
+
+
 
 function EnglishText( props ) {
   return (
@@ -107,19 +109,28 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   }),
 );
 
-export default function EditorTabs( props ) {
+export default function EditorTabs( {setOut, currLang} ) {
   const [value, setValue] = React.useState(0);
   const [currentTab, setCurrentTab] = useState('french');
-  const [frenCode, setFrenCode] = useState("console.log('hello world!');");
+  const [foreignCode, setForeignCode] = useState("console.log('bonjour monde!');");
   const [engCode, setEngCode] = useState("console.log('hello world!');");
 
+  useEffect(() => {
+    if(currLang == 'French'){
+      setForeignCode("console.log('bonjour monde!');");
+    } else {
+      setForeignCode("console.log('hola mundo!);");
+    }
+  }, [currLang])
+
   const handleChange = (event, newValue) => {
+    console.log(newValue)
     setValue(newValue);
   };
 
   const runCode = async(e) => {
     e.preventDefault();
-    const codeInfo = { frenCode };
+    const codeInfo = { foreignCode };
 
     await fetch("/translate_code", {
       method: "POST",
@@ -141,15 +152,15 @@ export default function EditorTabs( props ) {
   const tempRun = (code) => {
     const oldLog = console.log;
     console.log = function(message){
-      props.setOut((prev) => prev ? (prev + '\n' + message) : message);
+      setOut((prev) => prev ? (prev + '\n' + message) : message);
     }
 
     const oldError = console.error;
     console.error = function(e){
-      props.setOut((prev) => prev ? (prev + '\n' + e) : e);
+      setOut((prev) => prev ? (prev + '\n' + e) : e);
     } 
 
-    props.setOut('');
+    setOut('');
     
     try {
       
@@ -196,7 +207,11 @@ export default function EditorTabs( props ) {
         <Grid container>
           <Grid item xs={6}>
             <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <StyledTab onClick={() => setCurrentTab('french')} label="French.js" {...a11yProps(0)} />
+              {currLang == "French" ? (
+                <StyledTab onClick={() => setCurrentTab('french')} label="French.js" {...a11yProps(0)} />
+              ) : (
+                <StyledTab onClick={() => setCurrentTab('spanish')} label="Spanish.js" {...a11yProps(0)} />
+              )}
               <StyledTab onClick={() => setCurrentTab('english')} label="English.js" {...a11yProps(1)} />
             </StyledTabs>
           </Grid>
@@ -205,16 +220,16 @@ export default function EditorTabs( props ) {
             <Tooltip title="Run code">
               <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4', transition: '0.2s', '&:hover': {color: '#AA84FF'}}}></PlayArrowOutlinedIcon></IconButton>
             </Tooltip>
-            <Tooltip title={currentTab == 'french' ? 'Click on the english tab to download your code' : 'Download translated JS file'}>
+            <Tooltip title={currentTab != 'english' ? 'Click on the english tab to download your code' : 'Download translated JS file'}>
               <IconButton onClick={currentTab == 'english' ? handleDownload : null}>
-                <FileDownloadOutlinedIcon sx={currentTab == 'french' ? {color: '#2D2445', marginRight: '10px', transition: '0.2s'} : {marginRight: '10px', transition: '0.2s', color: '#D0C7E4', '&:hover': {color:'#AA84FF'}}}></FileDownloadOutlinedIcon>
+                <FileDownloadOutlinedIcon sx={currentTab != 'english' ? {color: '#2D2445', marginRight: '10px', transition: '0.2s'} : {marginRight: '10px', transition: '0.2s', color: '#D0C7E4', '&:hover': {color:'#AA84FF'}}}></FileDownloadOutlinedIcon>
               </IconButton>
             </Tooltip>
           </Grid>
         </Grid>
       </Box>
       <TabPanel value={value} index={0}>
-        <FrenchText code={frenCode} setCode={setFrenCode}></FrenchText>
+        <ForeignText code={foreignCode} setCode={setForeignCode}></ForeignText>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <EnglishText code={engCode} setCode={setEngCode}></EnglishText>
