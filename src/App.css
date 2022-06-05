@@ -40,12 +40,13 @@
 body {
   background-color: #110A25;
   font-family: 'Courier New';
-  padding-left: 10vh;
-  padding-right: 10vh;
+  padding-left: 7vh;
+  padding-right: 7vh;
   justify-content: center;
   align-items: center;
 }
 
 .main-container {
+  margin-top: 5vh;
   height: 90vh;
 }

@@ -111,7 +111,7 @@ export default function EditorTabs( props ) {
   const [value, setValue] = React.useState(0);
   const [currentTab, setCurrentTab] = useState('french');
   const [frenCode, setFrenCode] = useState("console.log('hello world!');");
-  const [engCode, setEngCode] = useState('');
+  const [engCode, setEngCode] = useState("console.log('hello world!');");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -120,8 +120,6 @@ export default function EditorTabs( props ) {
   const runCode = async(e) => {
     e.preventDefault();
     const codeInfo = { frenCode };
-
-    // console.log(codeInfo);
 
     await fetch("/translate_code", {
       method: "POST",
@@ -149,7 +147,9 @@ export default function EditorTabs( props ) {
     const oldError = console.error;
     console.error = function(e){
       props.setOut((prev) => prev ? (prev + '\n' + e) : e);
-    }
+    } 
+
+    
 
     try {
       const f = new Function(code);
@@ -160,8 +160,34 @@ export default function EditorTabs( props ) {
 
   }
 
-  const handleDownload = () => { 
-  } 
+  const handleDownload = async(e) => {
+    e.preventDefault();
+    const codeInfo = { engCode };
+
+    await fetch("/download", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(codeInfo)
+    }).then(response => {
+      let a = response.body.getReader();
+      a.read().then(({ done, value }) => {
+        saveAsFile(new TextDecoder("utf-8").decode(value), 'English.js');
+      }
+      );
+    })
+  }
+
+  function saveAsFile(text, filename) {
+    const blob = new Blob([text], {type: 'text/js'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    
+    a.href = url;
+    a.download = filename;
+    a.click(); 
+  }
   
   const changeColor = () => {
     if (currentTab == 'french') return '#2D2445';
