@@ -35,9 +35,7 @@ function EnglishText( props ) {
       value={props.code}
       height="600px"
       extensions={[javascript({ jsx: true })]}
-      onChange={(value, viewUpdate) => {
-        props.setCode(value);
-      }}
+      readOnly={true}
     />  
   );
 }
