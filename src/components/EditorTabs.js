@@ -13,6 +13,8 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import { styled } from '@mui/material/styles';
 import { yeetle } from '../styles/code-theme.ts';
 import {EditorView} from "@codemirror/view";
+import Tooltip from '@mui/material/Tooltip';
+import { blue } from '@mui/material/colors';
 
 function FrenchText( props ) {
   return (
@@ -107,7 +109,7 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 
 export default function EditorTabs( props ) {
   const [value, setValue] = React.useState(0);
-
+  const [currentTab, setCurrentTab] = useState('french');
   const [frenCode, setFrenCode] = useState("console.log('hello world!');");
   const [engCode, setEngCode] = useState("console.log('hello world!');");
 
@@ -187,6 +189,11 @@ export default function EditorTabs( props ) {
     a.click(); 
   }
   
+  const changeColor = () => {
+    if (currentTab == 'french') return '#2D2445';
+    if (currentTab == 'english') return '#D0C7E4';
+  } 
+
   
   return (
     <Box sx={{ width: '100%' }}>
@@ -194,14 +201,18 @@ export default function EditorTabs( props ) {
         <Grid container>
           <Grid item xs={6}>
             <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <StyledTab label="French.js" {...a11yProps(0)} />
-              <StyledTab label="English.js" {...a11yProps(1)} />
+              <StyledTab onClick={() => setCurrentTab('french')} label="French.js" {...a11yProps(0)} />
+              <StyledTab onClick={() => setCurrentTab('english')} label="English.js" {...a11yProps(1)} />
             </StyledTabs>
           </Grid>
 
           <Grid item container justifyContent="flex-end" xs={6}>
-            <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
-            <IconButton onClick={handleDownload}><FileDownloadOutlinedIcon sx={{color: '#D0C7E4', marginRight: '10px'}}></FileDownloadOutlinedIcon></IconButton>
+            <Tooltip title="Run code">
+              <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
+            </Tooltip>
+            <Tooltip title={currentTab == 'french' ? 'Click on the english tab to download your code' : 'Download translated JS file'}>
+              <IconButton onClick={currentTab == 'english' ? handleDownload : null}><FileDownloadOutlinedIcon sx={{color: `${changeColor()}`}}></FileDownloadOutlinedIcon></IconButton>
+            </Tooltip>
           </Grid>
         </Grid>
       </Box>
