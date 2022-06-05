@@ -211,7 +211,7 @@ export default function EditorTabs( props ) {
               <IconButton onClick={runCode}><PlayArrowOutlinedIcon sx={{color: '#D0C7E4'}}></PlayArrowOutlinedIcon></IconButton>
             </Tooltip>
             <Tooltip title={currentTab == 'french' ? 'Click on the english tab to download your code' : 'Download translated JS file'}>
-              <IconButton onClick={currentTab == 'english' ? handleDownload : null}><FileDownloadOutlinedIcon sx={{color: `${changeColor()}`}}></FileDownloadOutlinedIcon></IconButton>
+              <IconButton onClick={currentTab == 'english' ? handleDownload : null}><FileDownloadOutlinedIcon sx={{color: `${changeColor()}`, marginRight: '10px'}}></FileDownloadOutlinedIcon></IconButton>
             </Tooltip>
           </Grid>
         </Grid>
