@@ -30,36 +30,5 @@ def string_trans(strinp):
         str_out += a
     return str_out
 
-print(string_trans(
-"""
-valueOf
-charAt
-charCodeAt
-concat
-indexOf
-lastIndexOf
-length
-replace
-search
-slice
-split
-substr
-substring
-toUpperCase
-every
-filter
-forEach
-join
-map
-pop
-push
-reduce
-reduceRight
-reverse
-shift
-unshift
-sort
-match
-some
-"""
-))
+print(string_trans("""
+"""))

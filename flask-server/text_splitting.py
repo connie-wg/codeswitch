@@ -1,4 +1,3 @@
-import text_processing
 from text_processing import replacing_keywords
 
 symbols_list = {
