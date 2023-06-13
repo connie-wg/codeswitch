@@ -9,7 +9,31 @@ Codez le JavaScript dans un langage avec lequel vous êtes plus comfortables!
 Les mot-clés et fonctions intégrées suivants sont compatibles.
 Les fonctions comprendent un IDE en ligne, l'abilité de traduire votre code en Anglais, et un façon de télécharger vos fichiers après vous avez finis!
 
-<br>
+## 🍎 Get It Started
+
+Install the dependencies using npm
+```shell
+npm install
+```
+
+Start the local development server
+```shell
+npm start
+```
+
+Create and activate the virtual enviornment
+```shell
+cd flask-server
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Run the backend server
+```shell
+python3 server.py
+```
+
+Use the French keywords and functions below and get coding! (Spanish is supported, but keywords/functions have not been updated on the ReadMe yet)
 
 ## JavaScript Keywords
       
